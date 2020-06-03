@@ -17,7 +17,6 @@
         li {
             font-size: large;
             font-weight: 400;
-
         }
 
         div {
@@ -77,6 +76,9 @@
             socket.emit('chat message', m.value);
             document.querySelector('#message').innerHTML += '<li>' + m.value + '</li><br/>';
             m.value = "";
+            socket.on('broadcast msg', (msg) => {
+                document.querySelector('#message').innerHTML += '<li>' + msg + '</li><br/>';
+            })
             return false;
         }
     </script>

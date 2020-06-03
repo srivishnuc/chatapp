@@ -8,8 +8,10 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log(`a is connected`)
-    socket.on('chat message', (msg) => console.log(`${msg}`))
+    socket.on('chat message', (msg) => {
+        var bmsg = 'Broadcating msg ' + msg;
+        io.emit('broadcast msg', bmsg)
+    })
 })
 
 http.listen(8000, () => console.log(`App listening on ${8000}`))
